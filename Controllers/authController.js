@@ -9,12 +9,22 @@ module.exports.registerNewUser = async (req,res)=>{
         user._id = new mongoose.Types.ObjectId();
 
         var result = await authService.registerNewUser(user); 
-        console.log("result="+result)
-        console.log("from success controller")
-        res.status(200).json({
-            message :"register new user successfully",
-            data :[]
-        });
+        console.log("result="+ JSON.stringify(result))
+        if(result instanceof Error)
+        {
+            console.log("from error controller")
+            res.status(400).json({
+                message :"register new user failed"
+            });
+        }
+        else
+        {
+            console.log("from success controller")
+            res.status(200).json({
+                message :"register new user successfully",
+                data :[]
+            });
+        }
     }
     catch(err)
     {

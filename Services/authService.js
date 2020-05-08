@@ -4,7 +4,7 @@ var userModel = require("../Models/User");
 module.exports.registerNewUser =  async (user)=>{
     
       //  console.log("user="+ JSON.stringify (user) )    
-
+/*
       var data = userModel.create(user,(err) => {
             if (err) { 
                 console.log("from error service")
@@ -19,5 +19,11 @@ module.exports.registerNewUser =  async (user)=>{
         
         console.log("data="+data)
         return data ;
+*/ 
+ return await userModel.create(user).then((data)=>{
+    return "success" ; 
+  }).catch((err)=>{
+    return new Error({error: 'Invalid Email address'}) ;
+  })
 
 }
