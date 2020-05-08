@@ -43,6 +43,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minLength: 7
+    },
+    address: {
+        type: String,
+        required: true,
+        minLength: 10
     }
 })
 

@@ -12,14 +12,14 @@ module.exports.registerNewUser = async (req,res)=>{
         //console.log("result="+ result)
         if(result instanceof Error)
         {
-            console.log("from error controller")
+            //console.log("from error controller")
             res.status(400).json({
                 message :`register new user failed (${result})`
             });
         }
         else
         {
-            console.log("from success controller")
+           // console.log("from success controller")
             res.status(200).json({
                 message :"register new user successfully",
                 data :[]
