@@ -3,6 +3,11 @@ const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
+
 const userSchema = mongoose.Schema({
     _id :{
         type: mongoose.Schema.Types.ObjectId,
@@ -17,12 +22,23 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true,
-        validate: async (value) => {
-            if (!validator.isEmail(value)) {
-                throw new Error({error: 'Invalid Email address'})
-            }
-        }
+        required: 'Email address is required',
+        validate: [validateEmail, 'Please fill a valid email address'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true,
+         validate: {
+            validator: function(v) {
+                var re = /^\d{10,12}$/;
+                return (v == null || v.trim().length < 1) || re.test(v)
+            },
+            message: 'Provided phone number is invalid.'
+        }
+    }
+    ,
     password: {
         type: String,
         required: true,

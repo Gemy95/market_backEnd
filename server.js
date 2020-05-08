@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 app.use(function (error, req, res, next) {
     if(error instanceof SyntaxError){ //Handle SyntaxError here.
-      return res.status(400).send({data : "Invalid data"});
+      return res.status(400).send({data : error.message});
     } else {
       next();
     }

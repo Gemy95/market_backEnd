@@ -21,9 +21,13 @@ module.exports.registerNewUser =  async (user)=>{
         return data ;
 */ 
  return await userModel.create(user).then((data)=>{
-    return "success" ; 
+    return "success added" ; 
   }).catch((err)=>{
-    return new Error({error: 'Invalid Email address'}) ;
+    console.log(err.name)
+    if(err.code == 11000)
+      return new Error ("Duplicate Email Or Phone Number");
+    else
+      return err ;    
   })
 
 }
