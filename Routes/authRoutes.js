@@ -7,7 +7,6 @@ var authController = require("../Controllers/authController");
 /**
  * @typedef UserObj
  * @property {string} name.required
- * @property {integer} age.required
  * @property {string} email.required
  * @property {string} phoneNumber.required
  * @property {string} password.required
