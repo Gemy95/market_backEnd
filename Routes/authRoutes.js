@@ -7,7 +7,7 @@ var authController = require("../Controllers/authController");
 /**
  * @group market project
  * @route GET /API/
- * @returns {object} 200 - token
+ * @returns {text/html} 200 
  * @returns {Error}  default - Unexpected err
  */
 router.get("/", (req,res)=>{
