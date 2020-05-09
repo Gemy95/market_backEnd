@@ -10,8 +10,10 @@ var authController = require("../Controllers/authController");
  * @returns {object} 200 - token
  * @returns {Error}  default - Unexpected err
  */
-router.get("/", ()=>{
-  console.log ("u are in front page")
+router.get("/", (req,res)=>{
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello From Home Page</h1>');
 } );
 
 /**
