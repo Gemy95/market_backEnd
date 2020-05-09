@@ -6,8 +6,7 @@ var authController = require("../Controllers/authController");
 
 /**
  * @group market project
- * @route POST /API/login
- * @param {loginObj.model} body.body.required 
+ * @route POST /API/
  * @returns {object} 200 - token
  * @returns {Error}  default - Unexpected err
  */
