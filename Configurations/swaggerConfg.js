@@ -1,7 +1,5 @@
 
-module.exports = (app)=>{
-
-const expressSwagger = require('express-swagger-generator')(app);
+module.exports = (expressSwagger)=>{
 
 var hostURL = "" ;
 

@@ -7,7 +7,8 @@ var mongoose = require ("mongoose");
 
 require("./Configurations/ConnectionDB");
 
-require("./Configurations/swaggerConfg")(app);
+const expressSwagger = require('express-swagger-generator')(app);
+require("./Configurations/swaggerConfg")(expressSwagger);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
