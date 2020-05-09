@@ -28,10 +28,44 @@ module.exports.registerNewUser = async (req,res)=>{
     }
     catch(err)
     {
-        console.log("from error controller")
+        //console.log("from error controller")
         res.status(400).json({
             message :"register new user failed"
         });
+    }
+
+}
+
+
+module.exports.loginUser = async (req,res)=>{
+    try
+    {
+     var user = req.body ;
+     var result = await authService.loginUser(user) ;   
+     //console.log("result="+ result); 
+      if(result instanceof Error)
+        {
+         res.status(400).json({
+          message : `login user failed (${result})`,
+          token : ""
+         });
+        }
+        else
+        {
+         res.status(200).json({
+            message :"login successfully",
+            token : result.token
+         });
+       } 
+    }
+    catch(err)
+    {
+       
+        res.status(400).json({
+            message : `login user failed (${result})`,
+            token : ""
+        });
+
     }
 
 }

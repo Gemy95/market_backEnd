@@ -1,5 +1,7 @@
 
 var userModel = require("../Models/User");
+var jwt = require ("jsonwebtoken");
+const bcrypt = require('bcryptjs');
 
 module.exports.registerNewUser =  async (user)=>{
     
@@ -23,7 +25,7 @@ module.exports.registerNewUser =  async (user)=>{
  return await userModel.create(user).then((data)=>{
     return "success added" ; 
   }).catch((err)=>{
-    //console.log(err.name)
+    // console.log(err.name)
     if(err.code == 11000)
       return new Error ("Duplicate Email Or Phone Number");
     else
@@ -31,3 +33,39 @@ module.exports.registerNewUser =  async (user)=>{
   })
 
 }
+
+
+module.exports.loginUser = async (user)=>{
+
+  // check if email found ?
+  return await userModel.findOne({email:user.email}).then( async (data)=>{
+     if (!data)
+     {
+       return new Error ("Email not found");
+     }
+     else
+     {
+      return bcrypt.compare(user.password, data.password).then((result) => {
+        if(result)
+        {
+          var token =  jwt.sign({email:user.email}, process.env.JWT_KEY || "jsonwedbtoken@market-aligamal&^%$#@")
+          return{
+            token : token
+          }
+        }
+        else
+        {
+          return new Error ("wrong password");
+        }
+    }).catch((err)=>{
+      return new Error ("error in user login compare password");  
+    });
+     }
+  }).catch((err)=>{
+    console.log("errrrrrr="+err)
+      return new Error ("error in user login");   
+  })
+
+}
+
+
