@@ -5,6 +5,17 @@ var authController = require("../Controllers/authController");
 
 
 /**
+ * @group market project
+ * @route POST /API/login
+ * @param {loginObj.model} body.body.required 
+ * @returns {object} 200 - token
+ * @returns {Error}  default - Unexpected err
+ */
+router.get("/", ()=>{
+  console.log ("u are in front page")
+} );
+
+/**
  * @typedef UserObj
  * @property {string} fullName.required
  * @property {string} email.required
@@ -39,6 +50,8 @@ router.post("/register", authController.registerNewUser );
  * @returns {Error}  default - Unexpected err
  */
 router.post("/login", authController.loginUser );
+
+
 
 
 module.exports = router;
