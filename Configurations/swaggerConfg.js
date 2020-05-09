@@ -3,6 +3,17 @@ module.exports = (app)=>{
 
 const expressSwagger = require('express-swagger-generator')(app);
 
+var hostURL = "" ;
+
+if ( process.env.ENVIROMENT = "PRO")
+{
+    hostURL = "https://market999-app.herokuapp.com" 
+}
+else
+{
+    hostURL = `localhost:${process.env.PORT||5000}` 
+}
+
 let options = {
     swaggerDefinition: {
         info: {
@@ -10,7 +21,7 @@ let options = {
             title: 'Swagger',
             version: '1.0.0',
         },
-        host: `localhost:${process.env.PORT||5000}`,
+        host: hostURL,
         basePath: '',
         produces: [
             "application/json",

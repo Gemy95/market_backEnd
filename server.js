@@ -7,7 +7,7 @@ var mongoose = require ("mongoose");
 
 require("./Configurations/ConnectionDB");
 
-// require("./Configurations/swaggerConfg")(app);
+ require("./Configurations/swaggerConfg")(app);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
