@@ -10,11 +10,7 @@ var authController = require("../Controllers/authController");
  * @returns {text/html} 200 
  * @returns {Error}  default - Unexpected err
  */
-router.get("/", (req,res)=>{
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello From Home Page</h1>');
-} );
+
 
 /**
  * @typedef UserObj

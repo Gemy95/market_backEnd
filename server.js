@@ -25,6 +25,12 @@ var authRoutes = require("./Routes/authRoutes");
  
 app.use("/API",authRoutes);
 
+app.get("/", (req,res)=>{
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello From Home Page</h1>');
+} );
+
 app.listen(process.env.PORT||5000 ,()=>{
     console.log(`server is listening on port ${process.env.PORT||5000}`)
 })
