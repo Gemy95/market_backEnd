@@ -1,16 +1,7 @@
 
 module.exports = (expressSwagger)=>{
 
-var hostURL = "" ;
-
-if ( process.env.ENVIROMENT = "PRO")
-{
-    hostURL = "https://market999-app.herokuapp.com" 
-}
-else
-{
-    hostURL = `localhost:${process.env.PORT||5000}` 
-}
+var hostURL = `localhost:${process.env.PORT||5000}` 
 
 let options = {
     swaggerDefinition: {

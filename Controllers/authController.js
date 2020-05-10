@@ -22,7 +22,7 @@ module.exports.registerNewUser = async (req,res)=>{
            // console.log("from success controller")
             res.status(200).json({
                 message :"register new user successfully",
-                userId : result.id
+                data : result
             });
         }
     }
@@ -55,7 +55,7 @@ module.exports.loginUser = async (req,res)=>{
          res.status(200).json({
             message :"login successfully",
             token : result.token ,
-            userId : result.id
+            data : result.data
          });
        } 
     }
@@ -65,6 +65,43 @@ module.exports.loginUser = async (req,res)=>{
         res.status(400).json({
             message : `login user failed (${result})`,
             token : ""
+        });
+
+    }
+
+}
+
+
+
+
+module.exports.userInfo = async (req,res)=>{
+    try
+    {
+     var userId = req.query.userId ;
+     var result = await authService.userInfo(userId) ;   
+     //console.log("result="+ result); 
+
+     if (result instanceof Error)
+     {
+        res.status(400).json({
+            message : `user information retrieved failed (${result})`,
+            data : {}
+        });
+     }
+     else
+     {
+         res.status(200).json({
+            message :"user information retrieved successfully",
+            data : result
+         });
+      }
+    }
+    catch(err)
+    {
+       //console.log("errrr="+err)
+        res.status(400).json({
+            message : `user information retrieved failed (${result})`,
+            data : {}
         });
 
     }

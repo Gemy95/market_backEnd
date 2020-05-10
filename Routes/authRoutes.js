@@ -50,5 +50,14 @@ router.post("/login", authController.loginUser );
 
 
 
+/**
+ * @group market project
+ * @route GET /API/userInfo
+ * @param {string} userId.query.required 
+ * @returns {object} 200 
+ * @returns {Error}  default - Unexpected err
+ */
+router.get("/userInfo", authController.userInfo );
+
 
 module.exports = router;

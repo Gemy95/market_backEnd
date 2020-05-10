@@ -11,6 +11,7 @@ var validateEmail = function(email) {
 const userSchema = mongoose.Schema({
     _id :{
         type: mongoose.Schema.Types.ObjectId,
+        required: true
     },
     fullName: {
         type: String,

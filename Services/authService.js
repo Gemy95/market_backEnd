@@ -23,7 +23,7 @@ module.exports.registerNewUser =  async (user)=>{
         return data ;
 */ 
  return await userModel.create(user).then((data)=>{
-    return { id : data._id } ; 
+    return  data ; 
   }).catch((err)=>{
     // console.log(err.name)
     if(err.code == 11000)
@@ -52,7 +52,7 @@ module.exports.loginUser = async (user)=>{
           var token =  jwt.sign({email:user.email}, process.env.JWT_KEY || "jsonwedbtoken@market-aligamal&^%$#@")
           return{
             token : token ,
-            id : data._id
+            data : data
           }
         }
         else
@@ -71,3 +71,13 @@ module.exports.loginUser = async (user)=>{
 }
 
 
+module.exports.userInfo =  async (id)=>{
+  //console.log("id="+ typeof id)
+ return await userModel.findOne({"_id":id}).then((data)=>{
+   //console.log("dataaaaaaa="+data)
+    return data ;
+}).catch((err)=>{
+    return err ;    
+})
+
+}
