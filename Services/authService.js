@@ -23,7 +23,7 @@ module.exports.registerNewUser =  async (user)=>{
         return data ;
 */ 
  return await userModel.create(user).then((data)=>{
-    return "success added" ; 
+    return { id : data._id } ; 
   }).catch((err)=>{
     // console.log(err.name)
     if(err.code == 11000)
@@ -39,6 +39,7 @@ module.exports.loginUser = async (user)=>{
 
   // check if email found ?
   return await userModel.findOne({email:user.email}).then( async (data)=>{
+    //console.log ("data="+JSON.stringify(data))
      if (!data)
      {
        return new Error ("Email not found");
@@ -50,7 +51,8 @@ module.exports.loginUser = async (user)=>{
         {
           var token =  jwt.sign({email:user.email}, process.env.JWT_KEY || "jsonwedbtoken@market-aligamal&^%$#@")
           return{
-            token : token
+            token : token ,
+            id : data._id
           }
         }
         else
@@ -62,7 +64,7 @@ module.exports.loginUser = async (user)=>{
     });
      }
   }).catch((err)=>{
-    console.log("errrrrrr="+err)
+    //console.log("errrrrrr="+err)
       return new Error ("error in user login");   
   })
 

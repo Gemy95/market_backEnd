@@ -22,7 +22,7 @@ module.exports.registerNewUser = async (req,res)=>{
            // console.log("from success controller")
             res.status(200).json({
                 message :"register new user successfully",
-                data :[]
+                userId : result.id
             });
         }
     }
@@ -54,7 +54,8 @@ module.exports.loginUser = async (req,res)=>{
         {
          res.status(200).json({
             message :"login successfully",
-            token : result.token
+            token : result.token ,
+            userId : result.id
          });
        } 
     }
