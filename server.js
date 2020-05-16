@@ -12,7 +12,7 @@ require("./Configurations/swaggerConfg")(expressSwagger);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
+app.use(cors('*'));
 
 app.use(function (error, req, res, next) {
     if(error instanceof SyntaxError){ //Handle SyntaxError here.
