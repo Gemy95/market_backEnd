@@ -23,7 +23,8 @@ module.exports.registerNewUser =  async (user)=>{
         return data ;
 */ 
  return await userModel.create(user).then((data)=>{
-    return  data ; 
+  var token =  jwt.sign({email:user.email}, process.env.JWT_KEY || "jsonwedbtoken@market-aligamal&^%$#@")
+    return {data : data , token : token } ; 
   }).catch((err)=>{
     // console.log(err.name)
     if(err.code == 11000)

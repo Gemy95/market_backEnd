@@ -22,7 +22,8 @@ module.exports.registerNewUser = async (req,res)=>{
            // console.log("from success controller")
             res.status(200).json({
                 message :"register new user successfully",
-                data : result
+                token : result.token,
+                data : result.data
             });
         }
     }
